@@ -1,34 +1,12 @@
-const pool = require('../db');
+const teacherService = require('../services/teacherService');
+const asyncHandler = require('../utils/asyncHandler');
 
-// CREATE
-exports.createTeacher = async (req, res) => {
-  try {
-    const {
-      full_name,
-      degree,
-      position,
-      email
-    } = req.body;
+exports.createTeacher = asyncHandler(async (req, res) => {
+  const teacher = await teacherService.createTeacher(req.body);
+  res.status(201).json(teacher);
+});
 
-    const result = await pool.query(
-      `INSERT INTO teachers (full_name, degree, position, email)
-       VALUES ($1, $2, $3, $4)
-       RETURNING *`,
-      [full_name, degree, position, email]
-    );
-
-    res.json(result.rows[0]);
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-};
-
-// READ
-exports.getTeachers = async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM teachers');
-    res.json(result.rows);
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-};
+exports.getTeachers = asyncHandler(async (req, res) => {
+  const teachers = await teacherService.getTeachers();
+  res.json(teachers);
+});
