@@ -1,7 +1,7 @@
 {
-  "name": "diploma-2026",
+  "name": "dyplom2026-backend",
   "version": "1.0.0",
-  "description": "Web system for generating educational documents",
+  "description": "Backend API for generating ChDTU working programs",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
@@ -10,8 +10,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "pg": "^8.20.0"
+    "handlebars": "^4.7.9",
+    "joi": "^18.1.2",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "pg": "^8.20.0",
+    "puppeteer": "^24.42.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
