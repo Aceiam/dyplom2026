@@ -14,6 +14,31 @@ CREATE TABLE IF NOT EXISTS teachers (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Користувачі системи для майбутньої реєстрації/авторизації.
+-- password_hash має зберігати тільки bcrypt/argon2-хеш, не сирий пароль.
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    teacher_id INTEGER REFERENCES teachers(id) ON DELETE SET NULL,
+
+    full_name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password_hash TEXT NOT NULL,
+    role TEXT NOT NULL DEFAULT 'teacher'
+        CHECK (role IN ('teacher', 'methodist', 'admin')),
+
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    last_login_at TIMESTAMP,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT chk_users_chdtu_email
+        CHECK (email ~* '^[A-Z0-9._%+-]+@chdtu\.edu\.ua$')
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email_lower
+    ON users (LOWER(email));
+
 -- Старий універсальний модуль документів. Лишений для сумісності з попереднім етапом.
 CREATE TABLE IF NOT EXISTS documents (
     id SERIAL PRIMARY KEY,

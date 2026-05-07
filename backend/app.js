@@ -9,9 +9,11 @@ app.use(express.json());
 const documentRoutes = require('./routes/documents');
 const teacherRoutes = require('./routes/teachers');
 const workingProgramRoutes = require('./routes/workingPrograms');
+const authRoutes = require('./routes/auth');
 const notFoundHandler = require('./middleware/notFoundHandler');
 const errorHandler = require('./middleware/errorHandler');
 
+app.use('/auth', authRoutes);
 // Старий модуль документів лишаємо як попередній етап розробки.
 app.use('/documents', documentRoutes);
 app.use('/teachers', teacherRoutes);
