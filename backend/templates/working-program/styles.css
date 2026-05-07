@@ -54,6 +54,11 @@ h3 {
   font-size: 12pt;
 }
 
+.subsection-title {
+  margin-top: 9px;
+  font-size: 11.5pt;
+}
+
 ol,
 ul {
   margin: 4px 0 8px 20px;
@@ -243,6 +248,32 @@ th {
 .numbered-table td:first-child {
   width: 16mm;
   text-align: center;
+}
+
+.self-study-topics-table th:nth-child(2),
+.self-study-topics-table td:nth-child(2),
+.assessment-criteria-table th:nth-child(2),
+.assessment-criteria-table td:nth-child(2) {
+  width: 34%;
+}
+
+.assessment-scale-table {
+  width: 68%;
+  margin-bottom: 8px;
+}
+
+.assessment-scale-table th:first-child,
+.assessment-scale-table td:first-child {
+  width: 62%;
+}
+
+.assessment-scale-table th:nth-child(2),
+.assessment-scale-table td:nth-child(2) {
+  text-align: center;
+}
+
+.compact-list li {
+  margin-bottom: 2px;
 }
 
 .plan-table {

@@ -296,6 +296,27 @@
       {{/if}}
 
       <h2>10. САМОСТІЙНА РОБОТА</h2>
+      <h3 class="subsection-title">Тематика самостійної роботи</h3>
+      {{#if (hasItems selfStudy.topics)}}
+        <table class="numbered-table self-study-topics-table">
+          <tr>
+            <th>№</th>
+            <th>Тема</th>
+            <th>Зміст самостійної роботи</th>
+          </tr>
+          {{#each selfStudy.topics}}
+            <tr>
+              <td>{{inc @index}}</td>
+              <td>{{value title "________________"}}</td>
+              <td>{{value description "________________"}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      {{else}}
+        <p class="empty-line">Тематика самостійної роботи буде додана.</p>
+      {{/if}}
+
+      <h3 class="subsection-title">Рекомендації до самостійної роботи</h3>
       {{#if (hasItems selfStudy.recommendations)}}
         <ol>
           {{#each selfStudy.recommendations}}
@@ -306,7 +327,19 @@
         <p class="empty-line">Рекомендації до самостійної роботи буде додано.</p>
       {{/if}}
 
+      <h3 class="subsection-title">Методичне забезпечення самостійної роботи</h3>
+      {{#if (hasItems selfStudy.methodicalSupport)}}
+        <ol>
+          {{#each selfStudy.methodicalSupport}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ol>
+      {{else}}
+        <p class="empty-line">Методичне забезпечення буде додано.</p>
+      {{/if}}
+
       <h2>11. СИСТЕМА ОЦІНЮВАННЯ НАВЧАЛЬНИХ ДОСЯГНЕНЬ</h2>
+      <h3 class="subsection-title">Методи контролю</h3>
       {{#if (hasItems assessment.controlMethods)}}
         <ul>
           {{#each assessment.controlMethods}}
@@ -317,7 +350,56 @@
         <p class="empty-line">Методи контролю буде додано.</p>
       {{/if}}
 
-      <h2>12. РЕКОМЕНДОВАНА ЛІТЕРАТУРА</h2>
+      <h3 class="subsection-title">Критерії оцінювання</h3>
+      {{#if (hasItems assessment.criteria)}}
+        <table class="numbered-table assessment-criteria-table">
+          <tr>
+            <th>№</th>
+            <th>Критерій</th>
+            <th>Опис</th>
+          </tr>
+          {{#each assessment.criteria}}
+            <tr>
+              <td>{{inc @index}}</td>
+              <td>{{value title "________________"}}</td>
+              <td>{{value description "________________"}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      {{else}}
+        <p class="empty-line">Критерії оцінювання буде додано.</p>
+      {{/if}}
+
+      <h3 class="subsection-title">Шкала оцінювання</h3>
+      {{#if (hasItems assessment.scale)}}
+        <table class="assessment-scale-table">
+          <tr>
+            <th>Оцінка за національною шкалою</th>
+            <th>Кількість балів</th>
+          </tr>
+          {{#each assessment.scale}}
+            <tr>
+              <td>{{value grade "________________"}}</td>
+              <td>{{value points "__"}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      {{else}}
+        <p class="empty-line">Шкалу оцінювання буде додано.</p>
+      {{/if}}
+
+      <h2>12. {{value examQuestions.title "ПИТАННЯ ДО ІСПИТУ"}}</h2>
+      {{#if (hasItems examQuestions.items)}}
+        <ol class="compact-list">
+          {{#each examQuestions.items}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ol>
+      {{else}}
+        <p class="empty-line">Питання до підсумкового контролю буде додано.</p>
+      {{/if}}
+
+      <h2>13. РЕКОМЕНДОВАНА ЛІТЕРАТУРА</h2>
       {{#if (hasItems literature)}}
         <ol>
           {{#each literature}}
@@ -328,7 +410,7 @@
         <p class="empty-line">Список літератури буде додано.</p>
       {{/if}}
 
-      <h2>13. ІНФОРМАЦІЙНІ РЕСУРСИ</h2>
+      <h2>14. ІНФОРМАЦІЙНІ РЕСУРСИ</h2>
       {{#if (hasItems informationResources)}}
         <ol>
           {{#each informationResources}}
@@ -339,7 +421,7 @@
         <p class="empty-line">Інформаційні ресурси буде додано.</p>
       {{/if}}
 
-      <h2>14. МЕТОДИ НАВЧАННЯ</h2>
+      <h2>15. МЕТОДИ НАВЧАННЯ</h2>
       {{#if (hasItems teachingMethods)}}
         <ol>
           {{#each teachingMethods}}
@@ -350,7 +432,7 @@
         <p class="empty-line">Методи навчання буде додано.</p>
       {{/if}}
 
-      <h2>15. ПОЛІТИКА ДИСЦИПЛІНИ</h2>
+      <h2>16. ПОЛІТИКА ДИСЦИПЛІНИ</h2>
       <p>{{value disciplinePolicy "Політика дисципліни буде додана."}}</p>
     </section>
   </main>
