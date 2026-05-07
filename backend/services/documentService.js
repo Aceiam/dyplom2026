@@ -2,6 +2,7 @@ const pool = require('../db');
 const teacherService = require('./teacherService');
 const AppError = require('../utils/AppError');
 
+// Тимчасова система шаблонів для старого модуля documents.
 const getTemplateByType = (type) => {
   switch (type) {
     case 'practice':
@@ -61,6 +62,7 @@ const createDocument = async (payload) => {
     ? await teacherService.getTeacherById(teacher_id)
     : null;
 
+  // Snapshot зберігає дані викладача в документі на момент створення.
   const finalData = {
     teacher: teacherSnapshot,
     student: data.student,
@@ -98,6 +100,7 @@ const getDocumentById = async (id) => {
 
 const updateDocument = async (id, payload) => {
   const existing = await getDocumentById(id);
+  // Для старих documents достатньо простого merge верхнього рівня.
   const updatedData = {
     ...existing.data,
     ...(payload.data || {}),

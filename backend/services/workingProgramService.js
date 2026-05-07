@@ -22,10 +22,12 @@ const getTeacherSnapshot = async (teacherId) => {
   return teacherService.getTeacherById(teacherId);
 };
 
+// Будує тіло JSONB-документа: базова структура + дані користувача + snapshot викладача.
 const buildProgramData = async (payload, existingData = null) => {
   const teacher = await getTeacherSnapshot(payload.teacher_id);
   const defaultData = buildWorkingProgramDefaultData(payload, teacher);
   const baseData = existingData || defaultData;
+  // Deep merge оновлює вкладені JSON-поля, не стираючи сусідні поля.
   const mergedData = deepMerge(baseData, payload.data || {});
 
   return {
@@ -90,6 +92,7 @@ const createWorkingProgram = async (payload) => {
 
 const getWorkingPrograms = async () => {
   const result = await pool.query(
+    // Join потрібен лише для зручного списку; повний snapshot викладача лежить у data JSONB.
     `SELECT
        working_programs.*,
        teachers.full_name AS teacher_full_name
@@ -122,6 +125,7 @@ const getWorkingProgramById = async (id) => {
 const updateWorkingProgram = async (id, payload) => {
   const existing = await getWorkingProgramById(id);
 
+  // Зберігаємо старі значення колонок, якщо запит оновлює тільки data JSONB.
   const nextPayload = {
     teacher_id: hasOwn(payload, 'teacher_id') ? payload.teacher_id : existing.teacher_id,
     title: hasOwn(payload, 'title') ? payload.title : existing.title,

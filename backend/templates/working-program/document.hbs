@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>{{value discipline_name "Робоча програма"}}</title>
+  <style>{{{styles}}}</style>
+</head>
+<body>
+  <main class="document">
+    <!-- Перша сторінка: титул робочої програми. -->
+    <section class="page title-page">
+      <div class="university-block">
+        <p>{{value titlePage.university "Черкаський державний технологічний університет"}}</p>
+        <p>{{value titlePage.faculty "Факультет інформаційних технологій і систем"}}</p>
+      </div>
+
+      <div class="approval-block">
+        <p class="approval-title">«ЗАТВЕРДЖУЮ»</p>
+        <p>{{value titlePage.approval.approverPosition "Голова вченої ради"}}</p>
+        <p>{{value titlePage.approval.approverName "________________________"}}</p>
+        <p>Протокол № {{value titlePage.approval.protocolNumber "___"}}</p>
+        <p>«{{value titlePage.approval.protocolDate "__"}}» __________ 20__ р.</p>
+      </div>
+
+      <div class="title-center">
+        <h1>РОБОЧА ПРОГРАМА</h1>
+        <h2>навчальної дисципліни</h2>
+        <h3>«{{value discipline_name "Назва дисципліни"}}»</h3>
+        <p>Шифр за ОПП - {{value titlePage.programCode "________"}}</p>
+        <p>підготовки здобувачів освітнього ступеня {{value education_level "________"}}</p>
+      </div>
+
+      <table class="plain-table title-meta">
+        <tr>
+          <td>Спеціальність</td>
+          <td>{{value specialty_code "___"}} {{value specialty_name "________________"}}</td>
+        </tr>
+        <tr>
+          <td>Освітня програма</td>
+          <td>{{value educational_program "________________"}}</td>
+        </tr>
+      </table>
+
+      <p class="academic-year">{{value academic_year "20__-20__"}} навчальний рік</p>
+    </section>
+
+    <!-- Друга сторінка: розробники, протоколи, погодження та підписи. -->
+    <section class="page approval-page">
+      <p>
+        Робоча програма навчальної дисципліни «{{value discipline_name "Назва дисципліни"}}»
+        підготовки здобувачів освітнього ступеня {{value education_level "________"}}
+        за спеціальністю {{value specialty_code "___"}} {{value specialty_name "________________"}},
+        освітня програма: {{value educational_program "________________"}}.
+      </p>
+
+      <h2>Розробники:</h2>
+      {{#if (hasItems approvalPage.developers)}}
+        {{#each approvalPage.developers}}
+          <p class="underline">{{full_name}}, {{degree}}, {{position}}</p>
+        {{/each}}
+      {{else}}
+        <p class="underline">______________________________</p>
+      {{/if}}
+
+      <p class="spaced">
+        Робоча програма навчальної дисципліни затверджена на засіданні кафедри
+        {{value approvalPage.departmentApproval.departmentName "______________________________"}}
+      </p>
+
+      <p>
+        Протокол № {{value approvalPage.departmentApproval.protocolNumber "__"}}
+        від «{{value approvalPage.departmentApproval.protocolDate "__"}}» __________ 20__ року.
+      </p>
+
+      <div class="signature-row">
+        <span>Завідувач кафедри</span>
+        <span class="signature-line"></span>
+        <span>/{{value approvalPage.departmentApproval.headName "________________"}}/</span>
+      </div>
+
+      <h2 class="agreement-title">ПОГОДЖЕНО:</h2>
+
+      <div class="signature-row">
+        <span>Навчально-методичний відділ</span>
+        <span class="signature-line"></span>
+        <span>/________________/</span>
+      </div>
+    </section>
+
+    <!-- Основний зміст документа, який заповнюється з data JSONB. -->
+    <section class="content">
+      <h2>1. ІНФОРМАЦІЯ ПРО ВИКЛАДАЧА</h2>
+      <table class="info-table">
+        <tr>
+          <th>Прізвище, ім'я, по батькові</th>
+          <td>{{value teacherInfo.primaryTeacher.full_name "________________"}}</td>
+        </tr>
+        <tr>
+          <th>Науковий ступінь</th>
+          <td>{{value teacherInfo.primaryTeacher.degree "________________"}}</td>
+        </tr>
+        <tr>
+          <th>Вчене звання</th>
+          <td>{{value teacherInfo.primaryTeacher.academic_title "________________"}}</td>
+        </tr>
+        <tr>
+          <th>Посада</th>
+          <td>{{value teacherInfo.primaryTeacher.position "________________"}}</td>
+        </tr>
+        <tr>
+          <th>Місце роботи</th>
+          <td>{{value teacherInfo.primaryTeacher.department "________________"}}</td>
+        </tr>
+        <tr>
+          <th>Контактний телефон</th>
+          <td>{{value teacherInfo.primaryTeacher.phone "________________"}}</td>
+        </tr>
+        <tr>
+          <th>e-mail</th>
+          <td>{{value teacherInfo.primaryTeacher.email "________________"}}</td>
+        </tr>
+        <tr>
+          <th>Профайл дисципліни</th>
+          <td>{{value teacherInfo.disciplineProfileUrl "________________"}}</td>
+        </tr>
+        <tr>
+          <th>Розклад консультацій</th>
+          <td>{{value teacherInfo.consultationScheduleUrl "________________"}}</td>
+        </tr>
+      </table>
+
+      <h2>2. ОПИС НАВЧАЛЬНОЇ ДИСЦИПЛІНИ</h2>
+      <table class="description-table">
+        <tr>
+          <th>Галузь знань, спеціальність, освітня програма, освітній рівень</th>
+          <th>Загальні характеристики</th>
+          <th>Навчальне навантаження з дисципліни</th>
+        </tr>
+        <tr>
+          <td>
+            <p><strong>Галузь знань</strong><br>{{value disciplineDescription.knowledgeField "________________"}}</p>
+            <p><strong>Спеціальність</strong><br>{{value specialty_code "___"}} {{value specialty_name "________________"}}</p>
+            <p><strong>Освітня програма</strong><br>{{value educational_program "________________"}}</p>
+            <p><strong>Освітній рівень</strong><br>{{value education_level "________________"}}</p>
+          </td>
+          <td>
+            <p>{{value disciplineDescription.disciplineStatus "________________"}}</p>
+            <p>Курс підготовки: {{value disciplineDescription.courseYear "__"}}</p>
+            <p>Семестр підготовки: {{value disciplineDescription.semesters "__"}}</p>
+            <p>Кількість кредитів ЄКТС: {{value disciplineDescription.credits "__"}}</p>
+            <p>Загальна кількість годин: {{value disciplineDescription.totalHours "__"}}</p>
+            <p>Мова навчання: {{value disciplineDescription.language "українська"}}</p>
+            <p>Форма підсумкового контролю: {{value disciplineDescription.finalControl "________"}}</p>
+          </td>
+          <td>
+            <p>Аудиторні години: {{value disciplineDescription.classroomHours "__"}}</p>
+            <p>Лекції: {{value disciplineDescription.lecturesHours.fullTime "__"}} / {{value disciplineDescription.lecturesHours.partTime "__"}}</p>
+            <p>Практичні: {{value disciplineDescription.practicalHours.fullTime "__"}} / {{value disciplineDescription.practicalHours.partTime "__"}}</p>
+            <p>Лабораторні: {{value disciplineDescription.labHours.fullTime "__"}} / {{value disciplineDescription.labHours.partTime "__"}}</p>
+            <p>Самостійна робота: {{value disciplineDescription.selfStudyHours.fullTime "__"}} / {{value disciplineDescription.selfStudyHours.partTime "__"}}</p>
+          </td>
+        </tr>
+      </table>
+
+      <h2>3. МЕТА І ЗАВДАННЯ НАВЧАЛЬНОЇ ДИСЦИПЛІНИ</h2>
+      <table class="info-table">
+        <tr>
+          <th>Предмет вивчення дисципліни</th>
+          <td>{{value purposeAndTasks.subject "________________"}}</td>
+        </tr>
+        <tr>
+          <th>Мета викладання дисципліни</th>
+          <td>{{value purposeAndTasks.purpose "________________"}}</td>
+        </tr>
+        <tr>
+          <th>Завдання вивчення дисципліни</th>
+          <td>{{value purposeAndTasks.tasks "________________"}}</td>
+        </tr>
+      </table>
+
+      <h2>4. РЕЗУЛЬТАТИ НАВЧАННЯ</h2>
+      {{#if (hasItems learningOutcomes)}}
+        <table class="numbered-table">
+          <tr>
+            <th>№ з/п</th>
+            <th>Результати навчання</th>
+          </tr>
+          {{#each learningOutcomes}}
+            <tr>
+              <td>{{inc @index}}</td>
+              <td><strong>{{code}}</strong> {{text}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      {{else}}
+        <p class="empty-line">______________________________</p>
+      {{/if}}
+
+      <h2>5. ПРЕРЕКВІЗИТИ</h2>
+      <p>{{value prerequisites "________________"}}</p>
+
+      <h2>6. ПОСТРЕКВІЗИТИ</h2>
+      <p>{{value postrequisites "________________"}}</p>
+
+      <h2>7. ПРОГРАМА НАВЧАЛЬНОЇ ДИСЦИПЛІНИ</h2>
+      {{#if (hasItems courseProgram)}}
+        {{#each courseProgram}}
+          <div class="module-block">
+            <h3>{{value title "Змістовий модуль"}}</h3>
+            {{#if (hasItems topics)}}
+              {{#each topics}}
+                <p><strong>Тема {{inc @index}}.</strong> {{title}}</p>
+                <p>{{description}}</p>
+              {{/each}}
+            {{/if}}
+          </div>
+        {{/each}}
+      {{else}}
+        <p class="empty-line">Зміст програми буде додано.</p>
+      {{/if}}
+
+      <h2>8. ТЕМАТИЧНИЙ ПЛАН НАВЧАЛЬНОЇ ДИСЦИПЛІНИ</h2>
+      <table class="plan-table">
+        <tr>
+          <th>№ теми</th>
+          <th>Назва модулів і тем</th>
+          <th>Лекції</th>
+          <th>Лабораторні</th>
+          <th>Самостійна робота</th>
+          <th>Література</th>
+        </tr>
+        {{#if (hasItems thematicPlan)}}
+          {{#each thematicPlan}}
+            <tr>
+              <td>{{value number (inc @index)}}</td>
+              <td>{{title}}</td>
+              <td>{{value lectures "-"}}</td>
+              <td>{{value labs "-"}}</td>
+              <td>{{value selfStudy "-"}}</td>
+              <td>{{value resources "-"}}</td>
+            </tr>
+          {{/each}}
+        {{else}}
+          <tr>
+            <td colspan="6" class="centered">Тематичний план буде додано.</td>
+          </tr>
+        {{/if}}
+      </table>
+
+      <h2>9. ЛАБОРАТОРНІ РОБОТИ</h2>
+      {{#if (hasItems labs)}}
+        <table class="numbered-table">
+          <tr>
+            <th>№</th>
+            <th>Назва роботи</th>
+            <th>Кількість годин</th>
+          </tr>
+          {{#each labs}}
+            <tr>
+              <td>{{inc @index}}</td>
+              <td>{{title}}</td>
+              <td>{{value hours "-"}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      {{else}}
+        <p class="empty-line">Лабораторні роботи буде додано.</p>
+      {{/if}}
+
+      <h2>10. САМОСТІЙНА РОБОТА</h2>
+      {{#if (hasItems selfStudy.recommendations)}}
+        <ol>
+          {{#each selfStudy.recommendations}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ol>
+      {{else}}
+        <p class="empty-line">Рекомендації до самостійної роботи буде додано.</p>
+      {{/if}}
+
+      <h2>11. СИСТЕМА ОЦІНЮВАННЯ НАВЧАЛЬНИХ ДОСЯГНЕНЬ</h2>
+      {{#if (hasItems assessment.controlMethods)}}
+        <ul>
+          {{#each assessment.controlMethods}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <p class="empty-line">Методи контролю буде додано.</p>
+      {{/if}}
+
+      <h2>12. РЕКОМЕНДОВАНА ЛІТЕРАТУРА</h2>
+      {{#if (hasItems literature)}}
+        <ol>
+          {{#each literature}}
+            <li>{{text}}</li>
+          {{/each}}
+        </ol>
+      {{else}}
+        <p class="empty-line">Список літератури буде додано.</p>
+      {{/if}}
+
+      <h2>13. ІНФОРМАЦІЙНІ РЕСУРСИ</h2>
+      {{#if (hasItems informationResources)}}
+        <ol>
+          {{#each informationResources}}
+            <li>{{text}}</li>
+          {{/each}}
+        </ol>
+      {{else}}
+        <p class="empty-line">Інформаційні ресурси буде додано.</p>
+      {{/if}}
+
+      <h2>14. МЕТОДИ НАВЧАННЯ</h2>
+      {{#if (hasItems teachingMethods)}}
+        <ol>
+          {{#each teachingMethods}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ol>
+      {{else}}
+        <p class="empty-line">Методи навчання буде додано.</p>
+      {{/if}}
+
+      <h2>15. ПОЛІТИКА ДИСЦИПЛІНИ</h2>
+      <p>{{value disciplinePolicy "Політика дисципліни буде додана."}}</p>
+    </section>
+  </main>
+</body>
+</html>

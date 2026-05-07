@@ -1,9 +1,12 @@
+// Базова структура data JSONB для нової робочої програми.
+// Frontend може брати її як "порожній документ" і поступово заповнювати поля.
 const buildWorkingProgramDefaultData = (program = {}, teacher = null) => ({
   meta: {
     documentType: 'working_program',
     version: 1,
   },
   titlePage: {
+    // Дані першої титульної сторінки.
     university: '',
     faculty: '',
     department: '',
@@ -22,6 +25,7 @@ const buildWorkingProgramDefaultData = (program = {}, teacher = null) => ({
     academicYear: program.academic_year || '',
   },
   approvalPage: {
+    // Дані другої сторінки з погодженнями, протоколами та підписами.
     documentDescription: '',
     developers: teacher ? [teacher] : [],
     departmentApproval: {
@@ -51,6 +55,7 @@ const buildWorkingProgramDefaultData = (program = {}, teacher = null) => ({
     disciplineProfileUrl: '',
   },
   disciplineDescription: {
+    // Таблиця опису дисципліни: кредити, години, семестри, контроль.
     knowledgeField: '',
     specialty: {
       code: program.specialty_code || '',
@@ -84,11 +89,13 @@ const buildWorkingProgramDefaultData = (program = {}, teacher = null) => ({
     finalControl: '',
   },
   purposeAndTasks: {
+    // Розділ "Предмет, мета і завдання навчальної дисципліни".
     subject: '',
     purpose: '',
     tasks: '',
   },
   learningOutcomes: [],
+  // Далі йдуть масиви/секції, які у PDF перетворюються на списки й таблиці.
   prerequisites: '',
   postrequisites: '',
   courseProgram: [],

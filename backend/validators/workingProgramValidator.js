@@ -1,7 +1,9 @@
 const Joi = require('joi');
 
+// Часто текстове поле може бути ще не заповнене, тому дозволяємо '' і null.
 const nullableText = Joi.string().trim().allow('', null);
 
+// Перевіряємо верхній рівень data JSONB, але дозволяємо деталям секцій розвиватись поступово.
 const workingProgramDataSchema = Joi.object({
   meta: Joi.object().unknown(true),
   titlePage: Joi.object().unknown(true),
@@ -30,6 +32,7 @@ const workingProgramDataSchema = Joi.object({
 
 const createWorkingProgramSchema = Joi.object({
   teacher_id: Joi.number().integer().positive().allow(null),
+  // Ці три поля потрібні для списку, пошуку і назви майбутнього PDF.
   title: Joi.string().trim().min(3).required(),
   discipline_name: Joi.string().trim().min(3).required(),
   academic_year: Joi.string().trim().pattern(/^\d{4}-\d{4}$/).required()
@@ -56,8 +59,10 @@ const updateWorkingProgramSchema = Joi.object({
   educational_program: nullableText,
   education_level: nullableText,
   data: workingProgramDataSchema,
+// PUT має оновлювати хоча б одне поле.
 }).min(1).unknown(false);
 
+// Params теж валідуємо, щоб /working-programs/abc не йшов до SQL.
 const idParamSchema = Joi.object({
   id: Joi.number().integer().positive().required(),
 });

@@ -1,6 +1,7 @@
 const teacherService = require('../services/teacherService');
 const asyncHandler = require('../utils/asyncHandler');
 
+// Створення викладача для подальшого використання у snapshot робочої програми.
 exports.createTeacher = asyncHandler(async (req, res) => {
   const teacher = await teacherService.createTeacher(req.body);
   res.status(201).json(teacher);

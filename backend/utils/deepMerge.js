@@ -17,6 +17,7 @@ const deepMerge = (target = {}, source = {}) => {
     const targetValue = merged[key];
     const sourceValue = source[key];
 
+    // Зливаємо тільки вкладені об'єкти; масиви навмисно замінюються повністю.
     if (isPlainObject(targetValue) && isPlainObject(sourceValue)) {
       return {
         ...merged,

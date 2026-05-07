@@ -1,0 +1,261 @@
+@page {
+  /* Формат друку: A4 з полями, близькими до офіційного документа. */
+  size: A4;
+  margin: 18mm 15mm 18mm 20mm;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Робочі програми зазвичай оформлюються шрифтом Times New Roman. */
+  color: #000;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
+  line-height: 1.18;
+  background: #fff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+p {
+  margin: 0 0 7px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 20pt;
+  text-align: center;
+}
+
+h2 {
+  margin: 16px 0 8px;
+  font-size: 12pt;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+h3 {
+  margin: 10px 0 6px;
+  font-size: 12pt;
+}
+
+ol,
+ul {
+  margin: 4px 0 8px 20px;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 4px;
+}
+
+table {
+  /* border-collapse потрібен для Word-подібних таблиць без подвійних рамок. */
+  width: 100%;
+  border-collapse: collapse;
+  page-break-inside: auto;
+}
+
+tr {
+  page-break-inside: avoid;
+  page-break-after: auto;
+}
+
+th,
+td {
+  border: 1px solid #000;
+  padding: 4px 5px;
+  vertical-align: top;
+}
+
+th {
+  font-weight: 700;
+  text-align: center;
+}
+
+.page {
+  /* Окремі службові сторінки друкуються як самостійні аркуші. */
+  min-height: 260mm;
+  page-break-after: always;
+  position: relative;
+}
+
+.title-page {
+  padding-top: 12mm;
+}
+
+.university-block {
+  text-align: center;
+  font-size: 13pt;
+}
+
+.approval-block {
+  /* Блок "ЗАТВЕРДЖУЮ" на титульній сторінці розташований праворуч. */
+  width: 48%;
+  margin: 23mm 0 0 auto;
+  font-size: 12pt;
+}
+
+.approval-title {
+  font-weight: 700;
+  text-align: center;
+}
+
+.title-center {
+  margin-top: 38mm;
+  text-align: center;
+}
+
+.title-center h2 {
+  margin-top: 2px;
+  font-size: 18pt;
+  text-align: center;
+  text-transform: none;
+}
+
+.title-center h3 {
+  margin: 12mm 0 8mm;
+  font-size: 17pt;
+  text-align: center;
+}
+
+.title-meta {
+  width: 78%;
+  margin: 18mm auto 0;
+}
+
+.plain-table td,
+.plain-table th {
+  border: none;
+  padding: 2px 4px;
+}
+
+.plain-table td:first-child {
+  width: 32%;
+}
+
+.academic-year {
+  position: absolute;
+  right: 0;
+  bottom: 6mm;
+  left: 0;
+  text-align: center;
+}
+
+.approval-page {
+  padding-top: 18mm;
+}
+
+.approval-page h2 {
+  margin-top: 13mm;
+  text-align: left;
+}
+
+.underline {
+  display: inline-block;
+  border-bottom: 1px solid #000;
+  min-width: 78%;
+  font-style: italic;
+}
+
+.spaced {
+  margin-top: 12mm;
+}
+
+.signature-row {
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  align-items: end;
+  gap: 8px;
+  margin: 11mm 0 5mm;
+}
+
+.signature-line {
+  border-bottom: 1px solid #000;
+  height: 16px;
+}
+
+.agreement-title {
+  margin-top: 12mm;
+}
+
+.content {
+  page-break-before: always;
+}
+
+.info-table th {
+  width: 32%;
+  text-align: left;
+}
+
+.description-table th {
+  font-size: 11pt;
+}
+
+.description-table td {
+  width: 33.333%;
+}
+
+.description-table p {
+  margin-bottom: 8px;
+}
+
+.numbered-table th:first-child,
+.numbered-table td:first-child {
+  width: 16mm;
+  text-align: center;
+}
+
+.plan-table {
+  /* Тематичний план має багато колонок, тому робимо його трохи компактнішим. */
+  font-size: 10.5pt;
+}
+
+.plan-table th:nth-child(1),
+.plan-table td:nth-child(1) {
+  width: 14mm;
+  text-align: center;
+}
+
+.plan-table th:nth-child(3),
+.plan-table td:nth-child(3),
+.plan-table th:nth-child(4),
+.plan-table td:nth-child(4),
+.plan-table th:nth-child(5),
+.plan-table td:nth-child(5) {
+  width: 19mm;
+  text-align: center;
+}
+
+.plan-table th:nth-child(6),
+.plan-table td:nth-child(6) {
+  width: 28mm;
+  text-align: center;
+}
+
+.module-block {
+  break-inside: avoid;
+}
+
+.centered {
+  text-align: center;
+}
+
+.empty-line {
+  color: #111;
+}

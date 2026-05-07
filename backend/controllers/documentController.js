@@ -1,6 +1,7 @@
 const documentService = require('../services/documentService');
 const asyncHandler = require('../utils/asyncHandler');
 
+// Controller тільки приймає HTTP-запит і передає роботу в service.
 exports.createDocument = asyncHandler(async (req, res) => {
   const document = await documentService.createDocument(req.body);
   res.status(201).json(document);

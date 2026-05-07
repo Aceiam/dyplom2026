@@ -1,6 +1,7 @@
 const pool = require('../db');
 const AppError = require('../utils/AppError');
 
+// Service містить SQL-запити для таблиці teachers.
 const createTeacher = async (payload) => {
   const {
     full_name,
@@ -31,6 +32,7 @@ const getTeacherById = async (id) => {
   );
 
   if (result.rows.length === 0) {
+    // Service сам визначає бізнес-помилку, controller лише повертає відповідь.
     throw new AppError('Teacher not found', 404);
   }
 

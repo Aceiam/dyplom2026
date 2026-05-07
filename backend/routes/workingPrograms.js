@@ -12,6 +12,7 @@ const {
   createWorkingProgram,
   getWorkingPrograms,
   getWorkingProgramById,
+  exportWorkingProgramPdf,
   updateWorkingProgram,
   deleteWorkingProgram,
 } = require('../controllers/workingProgramController');
@@ -19,6 +20,8 @@ const {
 router.get('/template/default', getDefaultWorkingProgramData);
 router.post('/', validateRequest(createWorkingProgramSchema), createWorkingProgram);
 router.get('/', getWorkingPrograms);
+// Цей route має бути перед /:id, інакше "pdf" буде сприйнято як частину id.
+router.get('/:id/pdf', validateRequest(idParamSchema, 'params'), exportWorkingProgramPdf);
 router.get('/:id', validateRequest(idParamSchema, 'params'), getWorkingProgramById);
 router.put(
   '/:id',

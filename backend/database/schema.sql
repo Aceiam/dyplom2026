@@ -1,3 +1,4 @@
+-- Довідник викладачів. Дані звідси можуть копіюватися у snapshot робочої програми.
 CREATE TABLE IF NOT EXISTS teachers (
     id SERIAL PRIMARY KEY,
     full_name TEXT NOT NULL,
@@ -13,6 +14,7 @@ CREATE TABLE IF NOT EXISTS teachers (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Старий універсальний модуль документів. Лишений для сумісності з попереднім етапом.
 CREATE TABLE IF NOT EXISTS documents (
     id SERIAL PRIMARY KEY,
     teacher_id INTEGER REFERENCES teachers(id) ON DELETE SET NULL,
@@ -23,6 +25,7 @@ CREATE TABLE IF NOT EXISTS documents (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Основна таблиця дипломної: робочі програми навчальних дисциплін.
 CREATE TABLE IF NOT EXISTS working_programs (
     id SERIAL PRIMARY KEY,
     teacher_id INTEGER REFERENCES teachers(id) ON DELETE SET NULL,
@@ -36,12 +39,14 @@ CREATE TABLE IF NOT EXISTS working_programs (
     educational_program TEXT,
     education_level TEXT,
 
+    -- У data JSONB зберігається велика вкладена структура документа.
     data JSONB NOT NULL DEFAULT '{}'::jsonb,
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Індекси для майбутнього пошуку/фільтрації у списку робочих програм.
 CREATE INDEX IF NOT EXISTS idx_working_programs_academic_year
     ON working_programs (academic_year);
 

@@ -6,6 +6,7 @@ const {
   getTeachers
 } = require('../controllers/teacherController');
 
+// Довідник викладачів, які потім підтягуються у робочі програми.
 router.post('/', createTeacher);
 router.get('/', getTeachers);
 

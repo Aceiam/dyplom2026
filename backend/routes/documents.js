@@ -8,6 +8,7 @@ const {
   deleteDocument
 } = require('../controllers/documentController');
 
+// Старий CRUD для універсальних документів. Не є головним модулем дипломної.
 router.post('/', createDocument);
 router.get('/', getDocuments);
 router.put('/:id', updateDocument);

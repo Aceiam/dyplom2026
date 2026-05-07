@@ -3,6 +3,7 @@ const AppError = require('../utils/AppError');
 const validateRequest = (schema, source = 'body') => (req, res, next) => {
   const { value, error } = schema.validate(req[source], {
     abortEarly: false,
+    // Видаляє поля, які не описані в Joi-схемі.
     stripUnknown: true,
   });
 
