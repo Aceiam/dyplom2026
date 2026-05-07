@@ -203,16 +203,40 @@ th {
   text-align: left;
 }
 
+.description-table {
+  table-layout: fixed;
+}
+
 .description-table th {
   font-size: 11pt;
 }
 
 .description-table td {
   width: 33.333%;
+  vertical-align: middle;
 }
 
 .description-table p {
-  margin-bottom: 8px;
+  margin-bottom: 9px;
+}
+
+.description-profile-cell {
+  vertical-align: top;
+}
+
+.description-profile-cell p:last-child {
+  margin-bottom: 0;
+}
+
+.description-label {
+  font-weight: 700;
+}
+
+.description-note {
+  color: #333;
+  font-size: 10.5pt;
+  font-style: italic;
+  text-align: center;
 }
 
 .numbered-table th:first-child,
@@ -223,28 +247,34 @@ th {
 
 .plan-table {
   /* Тематичний план має багато колонок, тому робимо його трохи компактнішим. */
-  font-size: 10.5pt;
+  font-size: 10pt;
+  table-layout: fixed;
 }
 
-.plan-table th:nth-child(1),
-.plan-table td:nth-child(1) {
-  width: 14mm;
-  text-align: center;
+.plan-table th {
+  padding: 3px;
+  font-size: 9.5pt;
+  line-height: 1.08;
+  vertical-align: middle;
 }
 
-.plan-table th:nth-child(3),
-.plan-table td:nth-child(3),
-.plan-table th:nth-child(4),
-.plan-table td:nth-child(4),
-.plan-table th:nth-child(5),
-.plan-table td:nth-child(5) {
-  width: 19mm;
-  text-align: center;
+.plan-number-col {
+  width: 13mm;
 }
 
-.plan-table th:nth-child(6),
-.plan-table td:nth-child(6) {
-  width: 28mm;
+.plan-hours-col {
+  width: 21mm;
+}
+
+.plan-resources-col {
+  width: 26mm;
+}
+
+.plan-table tbody td:nth-child(1),
+.plan-table tbody td:nth-child(3),
+.plan-table tbody td:nth-child(4),
+.plan-table tbody td:nth-child(5),
+.plan-table tbody td:nth-child(6) {
   text-align: center;
 }
 

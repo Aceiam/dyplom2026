@@ -137,28 +137,38 @@
           <th>Навчальне навантаження з дисципліни</th>
         </tr>
         <tr>
-          <td>
+          <td rowspan="7" class="description-profile-cell">
             <p><strong>Галузь знань</strong><br>{{value disciplineDescription.knowledgeField "________________"}}</p>
             <p><strong>Спеціальність</strong><br>{{value specialty_code "___"}} {{value specialty_name "________________"}}</p>
             <p><strong>Освітня програма</strong><br>{{value educational_program "________________"}}</p>
             <p><strong>Освітній рівень</strong><br>{{value education_level "________________"}}</p>
           </td>
-          <td>
-            <p>{{value disciplineDescription.disciplineStatus "________________"}}</p>
-            <p>Курс підготовки: {{value disciplineDescription.courseYear "__"}}</p>
-            <p>Семестр підготовки: {{value disciplineDescription.semesters "__"}}</p>
-            <p>Кількість кредитів ЄКТС: {{value disciplineDescription.credits "__"}}</p>
-            <p>Загальна кількість годин: {{value disciplineDescription.totalHours "__"}}</p>
-            <p>Мова навчання: {{value disciplineDescription.language "українська"}}</p>
-            <p>Форма підсумкового контролю: {{value disciplineDescription.finalControl "________"}}</p>
-          </td>
-          <td>
-            <p>Аудиторні години: {{value disciplineDescription.classroomHours "__"}}</p>
-            <p>Лекції: {{value disciplineDescription.lecturesHours.fullTime "__"}} / {{value disciplineDescription.lecturesHours.partTime "__"}}</p>
-            <p>Практичні: {{value disciplineDescription.practicalHours.fullTime "__"}} / {{value disciplineDescription.practicalHours.partTime "__"}}</p>
-            <p>Лабораторні: {{value disciplineDescription.labHours.fullTime "__"}} / {{value disciplineDescription.labHours.partTime "__"}}</p>
-            <p>Самостійна робота: {{value disciplineDescription.selfStudyHours.fullTime "__"}} / {{value disciplineDescription.selfStudyHours.partTime "__"}}</p>
-          </td>
+          <td><span class="description-label">Статус дисципліни:</span> {{value disciplineDescription.disciplineStatus "________________"}}</td>
+          <td><span class="description-label">Аудиторні години:</span> {{value disciplineDescription.classroomHours "__"}}</td>
+        </tr>
+        <tr>
+          <td><span class="description-label">Курс підготовки:</span> {{value disciplineDescription.courseYear "__"}}</td>
+          <td><span class="description-label">Лекції:</span> {{value disciplineDescription.lecturesHours.fullTime "__"}} / {{value disciplineDescription.lecturesHours.partTime "__"}}</td>
+        </tr>
+        <tr>
+          <td><span class="description-label">Семестр підготовки:</span> {{listValue disciplineDescription.semesters "__"}}</td>
+          <td><span class="description-label">Практичні:</span> {{value disciplineDescription.practicalHours.fullTime "__"}} / {{value disciplineDescription.practicalHours.partTime "__"}}</td>
+        </tr>
+        <tr>
+          <td><span class="description-label">Кількість кредитів ЄКТС:</span> {{value disciplineDescription.credits "__"}}</td>
+          <td><span class="description-label">Лабораторні:</span> {{value disciplineDescription.labHours.fullTime "__"}} / {{value disciplineDescription.labHours.partTime "__"}}</td>
+        </tr>
+        <tr>
+          <td><span class="description-label">Загальна кількість годин:</span> {{value disciplineDescription.totalHours "__"}}</td>
+          <td><span class="description-label">Самостійна робота:</span> {{value disciplineDescription.selfStudyHours.fullTime "__"}} / {{value disciplineDescription.selfStudyHours.partTime "__"}}</td>
+        </tr>
+        <tr>
+          <td><span class="description-label">Мова навчання:</span> {{value disciplineDescription.language "українська"}}</td>
+          <td class="description-note">денна / заочна форма</td>
+        </tr>
+        <tr>
+          <td><span class="description-label">Форма підсумкового контролю:</span> {{value disciplineDescription.finalControl "________"}}</td>
+          <td></td>
         </tr>
       </table>
 
@@ -221,14 +231,31 @@
 
       <h2>8. ТЕМАТИЧНИЙ ПЛАН НАВЧАЛЬНОЇ ДИСЦИПЛІНИ</h2>
       <table class="plan-table">
-        <tr>
-          <th>№ теми</th>
-          <th>Назва модулів і тем</th>
-          <th>Лекції</th>
-          <th>Лабораторні</th>
-          <th>Самостійна робота</th>
-          <th>Література</th>
-        </tr>
+        <colgroup>
+          <col class="plan-number-col">
+          <col class="plan-topic-col">
+          <col class="plan-hours-col">
+          <col class="plan-hours-col">
+          <col class="plan-hours-col">
+          <col class="plan-resources-col">
+        </colgroup>
+        <thead>
+          <tr>
+            <th rowspan="3">№ теми</th>
+            <th rowspan="3">Назва модулів і тем</th>
+            <th colspan="3">Форми організації навчання,<br>кількість годин</th>
+            <th rowspan="3">Література,<br>інформаційні<br>ресурси</th>
+          </tr>
+          <tr>
+            <th colspan="3">Денна форма</th>
+          </tr>
+          <tr>
+            <th>Лекції</th>
+            <th>Лабораторні<br>роботи</th>
+            <th>Самостійна<br>робота</th>
+          </tr>
+        </thead>
+        <tbody>
         {{#if (hasItems thematicPlan)}}
           {{#each thematicPlan}}
             <tr>
@@ -245,6 +272,7 @@
             <td colspan="6" class="centered">Тематичний план буде додано.</td>
           </tr>
         {{/if}}
+        </tbody>
       </table>
 
       <h2>9. ЛАБОРАТОРНІ РОБОТИ</h2>

@@ -34,6 +34,22 @@ Handlebars.registerHelper('hasItems', (items) => Array.isArray(items) && items.l
 
 Handlebars.registerHelper('inc', (value) => Number(value) + 1);
 
+Handlebars.registerHelper('listValue', (value, fallback = '') => {
+  if (Array.isArray(value)) {
+    const items = value
+      .filter((item) => item !== null && item !== undefined && item !== '')
+      .map((item) => String(item));
+
+    return items.length > 0 ? items.join(', ') : fallback;
+  }
+
+  if (value === null || value === undefined || value === '') {
+    return fallback;
+  }
+
+  return value;
+});
+
 // Робить шаблон простішим: {{purposeAndTasks.purpose}} замість довгих шляхів через data.
 const buildWorkingProgramViewModel = (workingProgram) => {
   const data = workingProgram.data || {};
