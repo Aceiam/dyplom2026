@@ -7,11 +7,13 @@ app.use(express.json());
 
 const documentRoutes = require('./routes/documents');
 const teacherRoutes = require('./routes/teachers');
+const workingProgramRoutes = require('./routes/workingPrograms');
 const notFoundHandler = require('./middleware/notFoundHandler');
 const errorHandler = require('./middleware/errorHandler');
 
 app.use('/documents', documentRoutes);
 app.use('/teachers', teacherRoutes);
+app.use('/working-programs', workingProgramRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
