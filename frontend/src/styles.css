@@ -1,29 +1,29 @@
 :root {
-  color: #17201b;
-  background: #eef1ee;
+  color: #152238;
+  background: #eef4fb;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   font-size: 16px;
   line-height: 1.45;
   font-weight: 400;
-  --bg: #eef1ee;
+  --bg: #eef4fb;
   --surface: #ffffff;
-  --surface-muted: #f7f8f6;
-  --border: #d6ddd6;
-  --border-strong: #aab8ad;
-  --text: #17201b;
-  --muted: #657166;
-  --accent: #216b5c;
-  --accent-strong: #164d43;
-  --accent-soft: #e2f0ec;
+  --surface-muted: #f5f8fc;
+  --border: #d2dfec;
+  --border-strong: #9eb3ca;
+  --text: #152238;
+  --muted: #60728a;
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --accent-soft: #e8f0ff;
   --danger: #a43d3d;
   --danger-soft: #f7e8e8;
   --warning: #9a641e;
   --warning-soft: #fbf0df;
   --success: #22683d;
   --success-soft: #e5f2e9;
-  --shadow: 0 18px 48px rgba(22, 37, 29, 0.08);
+  --shadow: 0 18px 48px rgba(23, 44, 77, 0.1);
 }
 
 * {
@@ -62,7 +62,7 @@ button {
   padding: 18px;
   overflow: auto;
   border-right: 1px solid var(--border);
-  background: #fbfcfa;
+  background: #f8fbff;
 }
 
 .brand-block {
@@ -225,7 +225,7 @@ button {
 }
 
 .program-list-item.active {
-  border-color: #8ab8ad;
+  border-color: #93b5fd;
   background: var(--accent-soft);
 }
 
@@ -318,8 +318,25 @@ p {
   background: var(--surface);
 }
 
-.user-chip svg {
+.user-chip > svg {
+  flex: 0 0 auto;
   color: var(--accent);
+}
+
+.user-chip > div {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.account-delete-button {
+  flex: 0 0 32px;
+  width: 32px;
+  min-height: 32px;
+  margin-left: 2px;
+}
+
+.account-delete-button svg {
+  color: var(--danger);
 }
 
 .user-chip strong,
@@ -347,7 +364,7 @@ p {
   display: grid;
   place-items: center;
   padding: 18px;
-  background: rgba(20, 31, 25, 0.42);
+  background: rgba(15, 32, 62, 0.42);
 }
 
 .auth-dialog {
@@ -443,7 +460,7 @@ p {
 .drawer-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(20, 31, 25, 0);
+  background: rgba(15, 32, 62, 0);
   cursor: pointer;
   transition: background 0.18s ease;
 }
@@ -457,7 +474,7 @@ p {
 }
 
 .drawer-layer.open .drawer-backdrop {
-  background: rgba(20, 31, 25, 0.3);
+  background: rgba(15, 32, 62, 0.3);
 }
 
 .teacher-drawer {
@@ -470,7 +487,7 @@ p {
   height: 100%;
   border-left: 1px solid var(--border);
   background: var(--surface);
-  box-shadow: -18px 0 48px rgba(22, 37, 29, 0.14);
+  box-shadow: -18px 0 48px rgba(20, 43, 82, 0.14);
   transform: translateX(100%);
   transition: transform 0.18s ease;
 }
@@ -603,7 +620,7 @@ p {
 }
 
 .field span {
-  color: #38443b;
+  color: #334155;
   font-size: 0.86rem;
   font-weight: 720;
 }
@@ -633,8 +650,8 @@ p {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: #74a99e;
-  box-shadow: 0 0 0 3px rgba(33, 107, 92, 0.14);
+  border-color: #7aa7f8;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
 }
 
 .field.has-error input,

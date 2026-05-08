@@ -1000,22 +1000,23 @@ function App() {
                 <strong>{authUser?.full_name || 'Гість'}</strong>
                 <span>{authUser?.email || 'потрібен вхід'}</span>
               </div>
-            </div>
-            {authUser ? (
-              <>
-                <button type="button" className="secondary-button" onClick={logout}>
-                  Вийти
-                </button>
+              {authUser && (
                 <button
                   type="button"
-                  className="danger-icon-button"
+                  className="danger-icon-button account-delete-button"
                   onClick={deleteSelf}
                   title="Видалити свій акаунт"
+                  aria-label="Видалити свій акаунт"
                   disabled={authSaving}
                 >
-                  <Trash2 size={18} />
+                  <Trash2 size={16} />
                 </button>
-              </>
+              )}
+            </div>
+            {authUser ? (
+              <button type="button" className="secondary-button" onClick={logout}>
+                Вийти
+              </button>
             ) : (
               <button type="button" className="secondary-button" onClick={() => openAuth('login')}>
                 Увійти
